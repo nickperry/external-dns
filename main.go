@@ -131,6 +131,15 @@ func main() {
 				AppVersion:    externaldns.Version,
 			},
 		)
+	case "ns1":
+		p, err = provider.NewNS1Provider(
+			provider.NS1Config{
+				DomainFilter:  domainFilter,
+				ZoneIDFilter:  zoneIDFilter,
+				DryRun:        cfg.DryRun,
+				APIKey:        cfg.NS1APIKey,
+			},
+		)
 	case "inmemory":
 		p, err = provider.NewInMemoryProvider(provider.InMemoryInitZones(cfg.InMemoryZones), provider.InMemoryWithDomain(domainFilter), provider.InMemoryWithLogging()), nil
 	default:
